@@ -5,7 +5,7 @@ import User from "../models/user.model.js";
 
 export const clerkWebhooks = async (req, res) => {
   try {
-    const WEBHOOK_SECRET = process.env.CLERK_WEBHOOKS_SECRET;
+    const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
 
     const svix_id = req.headers["svix-id"];
     const svix_timestamp = req.headers["svix-timestamp"];
