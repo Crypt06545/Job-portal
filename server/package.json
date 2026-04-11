@@ -12,6 +12,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@sentry/node": "^10.48.0",
+    "@sentry/profiling-node": "^10.48.0",
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.9.0",
     "cookie-parser": "^1.4.7",
@@ -25,6 +27,7 @@
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
     "nodemon": "^3.1.14",
-    "resend": "^6.10.0"
+    "resend": "^6.10.0",
+    "svix": "^1.90.0"
   }
 }

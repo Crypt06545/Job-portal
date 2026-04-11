@@ -5,7 +5,7 @@ const { Schema, model } = mongoose;
 const userSchema = new Schema(
   {
     _id: {
-      type: Schema.Types.UUID,
+      type: String,
       default: () => crypto.randomUUID(),
     },
     name: {
@@ -18,10 +18,10 @@ const userSchema = new Schema(
       unique: true,
       match: /^\S+@\S+\.\S+$/,
     },
-    password: {
-      type: String,
-      required: true,
-    },
+    // password: {
+    //   type: String,
+    //   required: true,
+    // },
     role: {
       type: String,
       default: "USER",
