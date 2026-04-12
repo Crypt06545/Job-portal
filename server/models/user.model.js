@@ -6,7 +6,7 @@ const userSchema = new Schema(
   {
     _id: {
       type: String,
-      default: () => crypto.randomUUID(),
+      required: true,
     },
     name: {
       type: String,
@@ -18,78 +18,83 @@ const userSchema = new Schema(
       unique: true,
       match: /^\S+@\S+\.\S+$/,
     },
-    // password: {
-    //   type: String,
-    //   required: true,
-    // },
-    role: {
+    image: {
       type: String,
-      default: "USER",
-    },
-    title: {
-      type: String,
-    },
-    bio: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
-    state: {
-      type: String,
-    },
-    country: {
-      type: String,
-    },
-    zipCode: {
-      type: String,
-    },
-    location: {
-      type: String,
-    },
-    phone: {
-      type: String,
-    },
-    portfolioUrl: {
-      type: String,
-    },
-    linkedinUrl: {
-      type: String,
-    },
-    githubUrl: {
-      type: String,
+      required: true,
     },
     resumeUrl: {
       type: String,
     },
-    resumeOriginalName: {
-      type: String,
-    },
-    resumeSize: {
-      type: String,
-    },
-    resumeUploadDate: {
-      type: Date,
-    },
-    profilePictureUrl: {
-      type: String,
-    },
-    experienceLevel: {
-      type: String,
-      enum: ["Entry", "Mid", "Senior", "Expert", "Lead"],
-    },
-    skills: {
-      type: Schema.Types.Mixed,
-      default: [],
-    },
-    experience: {
-      type: Schema.Types.Mixed,
-      default: [],
-    },
-    education: {
-      type: Schema.Types.Mixed,
-      default: [],
-    },
+    // // password: {
+    // //   type: String,
+    // //   required: true,
+    // // },
+    // role: {
+    //   type: String,
+    //   default: "USER",
+    // },
+    // title: {
+    //   type: String,
+    // },
+    // bio: {
+    //   type: String,
+    // },
+    // city: {
+    //   type: String,
+    // },
+    // state: {
+    //   type: String,
+    // },
+    // country: {
+    //   type: String,
+    // },
+    // zipCode: {
+    //   type: String,
+    // },
+    // location: {
+    //   type: String,
+    // },
+    // phone: {
+    //   type: String,
+    // },
+    // portfolioUrl: {
+    //   type: String,
+    // },
+    // linkedinUrl: {
+    //   type: String,
+    // },
+    // githubUrl: {
+    //   type: String,
+    // },
+
+    // resumeOriginalName: {
+    //   type: String,
+    // },
+    // resumeSize: {
+    //   type: String,
+    // },
+    // resumeUploadDate: {
+    //   type: Date,
+    // },
+    // profilePictureUrl: {
+    //   type: String,
+    // },
+    // experienceLevel: {
+    //   type: String,
+    //   enum: ["Entry", "Mid", "Senior", "Expert", "Lead"],
+    // },
+    // skills: {
+    //   type: Schema.Types.Mixed,
+    //   default: [],
+    // },
+    // experience: {
+    //   type: Schema.Types.Mixed,
+    //   default: [],
+    // },
+    // education: {
+    //   type: Schema.Types.Mixed,
+    //   default: [],
+    // },
   },
   {
     timestamps: true,
