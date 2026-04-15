@@ -1,9 +1,11 @@
 import Company from "../models/company.mode.js";
+import slugify from "slugify";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import jwt from "jsonwebtoken";
+import Job from "../models/job.model.js";
 // register a new comapny
 export const registerCompanyController = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
@@ -92,7 +94,72 @@ export const companyLoginController = asyncHandler(async (req, res) => {
 export const getCompanyDataController = asyncHandler(async (req, res) => {});
 
 // post a new job
-export const postJobController = asyncHandler(async (req, res) => {});
+export const postJobController = asyncHandler(async (req, res) => {
+  const {
+    title,
+    type,
+    workMode,
+    location,
+    salaryMin,
+    salaryMax,
+    salaryPeriod,
+    description,
+    category,
+    experienceLevel,
+    requirements,
+    benefits,
+    deadline,
+    vacancies,
+    skills,
+  } = req.body;
+
+  // ✅ Required fields check
+  if (!title || !type || !workMode || !location || !description) {
+    throw new ApiError(
+      400,
+      "Title, type, workMode, location and description are required",
+    );
+  }
+
+  // ✅ Get companyId from authenticated company (set by auth middleware)
+  const companyId = req.company._id;
+
+  // ✅ Generate unique slug
+  const baseSlug = slugify(title, { lower: true, strict: true, trim: true });
+  let slug = baseSlug;
+  let count = 1;
+
+  while (true) {
+    const existing = await Job.findOne({ slug });
+    if (!existing) break;
+    slug = `${baseSlug}-${count}`;
+    count++;
+  }
+
+  const job = await Job.create({
+    companyId,
+    title,
+    slug,
+    type,
+    workMode,
+    location,
+    salaryMin,
+    salaryMax,
+    salaryPeriod,
+    description,
+    category,
+    experienceLevel,
+    requirements,
+    benefits,
+    deadline,
+    vacancies: vacancies || 1,
+    skills: skills || [],
+  });
+
+  return res
+    .status(201)
+    .json(new ApiResponse(201, job, "Job posted successfully"));
+});
 
 // get company job applicants
 export const getCompanyJobApplicantsController = asyncHandler(

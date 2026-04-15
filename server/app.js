@@ -8,6 +8,7 @@ import helmet from "helmet";
 import aj from "./config/arcjet.js"; // ✅
 import { isSpoofedBot } from "@arcjet/inspect"; // ✅
 import companyRouter from "./routes/company.route.js";
+import jobRouter from "./routes/job.routes.js";
 
 dotenv.config();
 
@@ -65,6 +66,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/company", companyRouter);
-// app.use("/api/v1/admin", AdminRouter);
+app.use("/api/v1/job", jobRouter);
 
 export default app;
