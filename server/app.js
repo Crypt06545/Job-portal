@@ -66,6 +66,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/company", companyRouter);
-app.use("/api/v1/job", jobRouter);
+app.use("/api/v1/jobs", jobRouter);
 
 export default app;
